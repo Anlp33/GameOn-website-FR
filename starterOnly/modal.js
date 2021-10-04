@@ -10,13 +10,16 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const form = document.querySelectorAll(".formData");
+const formData = document.querySelectorAll(".formData");
+const form = document.querySelector("#form");
 const close = document.querySelector(".close");
 const first = document.querySelector("#first");
 const last = document.querySelector(" #last");
 const email = document.querySelector("#email");
+const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
-const radiobuttons = document.querySelector(".checkbox-icon");
+const radio = document.querySelector(".input[type=radio]:checked");
+const checkbox = document.getElementById("checkbox1");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -35,71 +38,34 @@ function closeModal() {
 }
 // Firstname validation
 
-first.addEventListener("click", () => {
-  validFirst();
-});
-
-let firstMsg = first.nextElementSibling;
-const firstBorder = document.querySelector("#first.text-control");
-
-const validFirst = function () {
-  if (first.value.length < 2) {
-    firstMsg.innerHTML =
-      "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    firstMsg.classList.remove("valid");
-    firstMsg.classList.add("error");
-    firstBorder.style.border = "2px solid #e54858";
+const validFirst = () => {
+  let firstTrim = first.value.trim();
+  if (firstTrim.value.length < 2) {
     return false;
   } else {
-    firstMsg.innerHTML = "Le prénom est valide";
-    firstMsg.classList.add("valid");
-    firstMsg.classList.remove("error");
     return true;
   }
 };
 
 //Lastname validation
 
-last.addEventListener("click", () => {
-  validName();
-});
-
-let lastMsg = last.nextElementSibling;
-const lastBorder = document.querySelector("#last.text-control");
-
-const validName = function () {
-  if (last.value.length < 2) {
-    lastMsg.innerHTML =
-      "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    lastMsg.classList.remove("valid");
-    lastMsg.classList.add("error");
-    lastBorder.style.border = "2px solid #e54858";
+const validName = () => {
+  let lastTrim = last.value.trim();
+  if (lastTrim.value.length < 2) {
     return false;
   } else {
-    lastMsg.innerHTML = "Le nom est valide";
-    lastMsg.classList.add("valid");
-    lastMsg.classList.remove("error");
     return true;
   }
 };
 
-//Email validation
-
-email.addEventListener("change", function () {
-  validEmail(this);
-});
-
 //REGEX for email validation
-const validEmail = function (email) {
+const validEmail = (email) => {
   let emailRegExp = new RegExp(
     "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
     "g"
   );
 
   let testEmail = emailRegExp.test(email.value);
-
-  const emailMsg = email.nextElementSibling;
-  const emailBorder = document.querySelector("#email.text-control");
 
   //REGEX test
   if (testEmail) {
@@ -123,28 +89,59 @@ const validQuantity = function (quantity) {
     return false;
   }
 };
+//Birthdate validation
+
+validBirthdate = () => {
+  if (birthdate.value >= 0) {
+    console.log("false");
+  } else {
+    console.log("true");
+  }
+};
 
 //Location validation
 
-function validLocation() {
-  if (radiobuttons.checked) {
+validLocation = () => {
+  if (radio.value.length > 0) {
     return true;
   } else {
     return false;
   }
-}
+};
+
+//Checkbox function
+
+validCheckbox = () => {
+  if (checkbox.checked) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 //Form validation
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+  let resultValidFirst = validFirst();
+  let resultValidLast = validLast();
+  let resultValidEmail = validEmail();
+  let resultValidLocation = validLocation();
+  let resultValidBirthdate = validBirthdate();
+  let resultValidQuantity = validQuantity();
+  let resultValidCheckbox = validCheckbox();
+
   if (
-    validFirst() &&
-    validLast() &&
-    validEmail() &&
-    validQuantity() &&
-    validLocation()
+    resultValidFirst &&
+    resultValidLast &&
+    resultValidEmail &&
+    resultValidLocation &&
+    resultValidBirthdate &&
+    resultValidQuantity &&
+    resultValidCheckbox
   ) {
     form.submit();
+  } else {
+    console.log("error");
   }
 });
