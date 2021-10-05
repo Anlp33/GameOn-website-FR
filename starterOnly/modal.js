@@ -11,7 +11,6 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const form = document.querySelector("#form");
 const close = document.querySelector(".close");
 const first = document.querySelector("#first");
 const last = document.querySelector(" #last");
@@ -40,18 +39,17 @@ function closeModal() {
 
 const validFirst = () => {
   let firstTrim = first.value.trim();
-  if (firstTrim.value.length < 2) {
+  if (firstTrim.length < 2) {
     return false;
   } else {
     return true;
   }
 };
-
 //Lastname validation
 
 const validName = () => {
   let lastTrim = last.value.trim();
-  if (lastTrim.value.length < 2) {
+  if (lastTrim.length < 2) {
     return false;
   } else {
     return true;
@@ -59,13 +57,14 @@ const validName = () => {
 };
 
 //REGEX for email validation
+const email = document.querySelector("#email");
 const validEmail = (email) => {
   let emailRegExp = new RegExp(
     "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
     "g"
   );
 
-  let testEmail = emailRegExp.test(email.value);
+  let testEmail = emailRegExp.test(email);
 
   //REGEX test
   if (testEmail) {
@@ -74,74 +73,77 @@ const validEmail = (email) => {
     return false;
   }
 };
+validEmail();
 
 //Quantity validation
 
-const validQuantity = function (quantity) {
-  let quantityRegExp = new RegExp("/^[0-9]$/", "g");
+// const validQuantity = function (quantity) {
+//   let quantityRegExp = new RegExp("/^[0-9]$/", "g");
 
-  let testQuantity = quantityRegExp.test(quantity.value);
+//   let testQuantity = quantityRegExp.test(quantity.value);
 
-  //REGEX test
-  if (testQuantity) {
-    return true;
-  } else {
-    return false;
-  }
-};
-//Birthdate validation
+//   //REGEX test
+//   if (testQuantity) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+// validQuantity();
+// //Birthdate validation
 
-validBirthdate = () => {
-  if (birthdate.value >= 0) {
-    console.log("false");
-  } else {
-    console.log("true");
-  }
-};
+// validBirthdate = () => {
+//   if (birthdate.value >= 0) {
+//     console.log("false");
+//   } else {
+//     console.log("true");
+//   }
+// };
 
-//Location validation
+// //Location validation
 
-validLocation = () => {
-  if (radio.value.length > 0) {
-    return true;
-  } else {
-    return false;
-  }
-};
+// validLocation = () => {
+//   if (radio.value.length > 0) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
 
-//Checkbox function
+// //Checkbox function
 
-validCheckbox = () => {
-  if (checkbox.checked) {
-    return true;
-  } else {
-    return false;
-  }
-};
+// validCheckbox = () => {
+//   if (checkbox.checked) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// };
 
-//Form validation
+// // //Form validation
+// // const form = document.querySelector(".form");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  let resultValidFirst = validFirst();
-  let resultValidLast = validLast();
-  let resultValidEmail = validEmail();
-  let resultValidLocation = validLocation();
-  let resultValidBirthdate = validBirthdate();
-  let resultValidQuantity = validQuantity();
-  let resultValidCheckbox = validCheckbox();
+// // form.addEventListener('submit', function (e) {
+// //    e.preventDefault();
+// //    let resultValidFirst = validFirst();
+// //    let resultValidLast = validLast();
+// //    let resultValidEmail = validEmail();
+// //    let resultValidLocation = validLocation();
+// //    let resultValidBirthdate = validBirthdate();
+// //    let resultValidQuantity = validQuantity();
+// //    let resultValidCheckbox = validCheckbox();
 
-  if (
-    resultValidFirst &&
-    resultValidLast &&
-    resultValidEmail &&
-    resultValidLocation &&
-    resultValidBirthdate &&
-    resultValidQuantity &&
-    resultValidCheckbox
-  ) {
-    form.submit();
-  } else {
-    console.log("error");
-  }
-});
+// //   if (
+// //     resultValidFirst &&
+// //     resultValidLast &&
+// //     resultValidEmail &&
+// //     resultValidLocation &&
+// //     resultValidBirthdate &&
+// //     resultValidQuantity &&
+// //     resultValidCheckbox
+// //   ) {
+// //     form.submit();
+// //   } else {
+// //     console.log("error");
+// //   }
+// // });
