@@ -191,19 +191,26 @@ main {
   display: block;
 }
 
-.modal-submit {
+#modal-submit {
   display: none;
+  padding: 15px 8%;
+  margin: 15px auto;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 850px;
 }
 
-.btn-close {
+#btn-close {
   background: #fe142f;
   display: block;
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  bottom: 0px;
   border-radius: 8px;
   font-size: 1rem;
   padding: 12px 82px;
-  width: 182, 55px;
-  height: 40, 14px;
   color: #fff;
   cursor: pointer;
   border: 0;
@@ -214,6 +221,7 @@ main {
   margin-left: auto;
   text-align: center;
   font-size: 36px;
+  font-weight: normal;
   width: 309px;
   height: 153px;
 }
@@ -240,12 +248,12 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
+  font-size: 10px;
   color: #e54858;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -257,11 +265,11 @@ input {
   border: 2px solid #e54858;
 }
 
-input[data-error]::after {
+/* input[data-error]::after {
   content: attr(data-error);
   font-size: 0.4em;
   color: red;
-}
+} */
 
 .checkbox-label,
 .checkbox2-label {
@@ -357,6 +365,7 @@ input[data-error]::after {
   background: #fe142f;
   display: block;
   margin: 0 auto;
+  margin-top: 20px;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
@@ -509,7 +518,48 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 475px) {
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 20px;
+    min-width: 0;
+  }
+  .hero-content::after {
+    content: unset;
+  }
+  .hero-content .btn-signup {
+    display: none;
+  }
+  .hero-headline {
+    font-size: 4.5rem;
+    white-space: normal;
+  }
+  .hero-text {
+    width: unset;
+    font-size: 1.5rem;
+  }
+  .hero-img img {
+    border-radius: 10px;
+    margin-top: 40px;
+  }
+  .hero-section > .btn-signup {
+    display: block;
+    margin: 32px auto 10px;
+    padding: 12px 35px;
+  }
+  .copyrights {
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 476px) and (max-width: 1074px) {
   .hero-section {
     display: block;
     box-shadow: unset;
