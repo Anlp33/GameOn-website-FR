@@ -7,7 +7,9 @@ function editNav() {
   }
 }
 
-/*DOM Elements*/
+/**
+ * DOM elements
+ */
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const form = document.getElementById("form");
@@ -15,33 +17,49 @@ const close = document.querySelector(".close");
 const btnclose = document.querySelector("#btn-close");
 const first = document.querySelector("#first");
 const last = document.querySelector("#last");
+const inputEmail = document.querySelector("#email");
+const birthdate = document.getElementById("birthdate");
+const quantity = document.getElementById("quantity");
+const checkbox = document.getElementById("checkbox1");
 const modalSubmit = document.getElementById("modal-submit");
 
-/*launch modal event*/
+/**
+ * Launch modal event
+ */
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-/*launch modal form*/
+/**
+ * Launch modal form
+ */
 function launchModal() {
   modalbg.style.display = "block";
   form.style.display = "block";
   modalSubmit.style.display = "none";
 }
 
-/*close modal event*/
+/**
+ * close modal event
+ */
 close.addEventListener("click", closeModal);
 
-/*close modal form*/
+/**
+ * close modal form before submission
+ */
 function closeModal() {
   modalbg.style.display = "none";
 }
 
-/*close modal form after thank you message*/
+/**
+ * close modal form after thank you message
+ */
 const closeBtn = () => {
   modalbg.style.display = "none";
 };
 btnclose.addEventListener("click", closeBtn);
 
-/*Firstname validation*/
+/**
+ * Firstname function
+ */
 
 const validFirst = () => {
   let firstTrim = first.value.trim();
@@ -58,7 +76,9 @@ const validFirst = () => {
     return true;
   }
 };
-/*Lastname validation*/
+/**
+ * Lastname function
+ */
 
 const validLast = () => {
   let lastTrim = last.value.trim();
@@ -76,9 +96,9 @@ const validLast = () => {
   }
 };
 
-/*REGEX for email validation*/
-const inputEmail = document.querySelector("#email");
-
+/**
+ * Email function
+ */
 const validEmail = () => {
   let emailRegExp = new RegExp(
     "^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$",
@@ -86,7 +106,9 @@ const validEmail = () => {
   );
   let testEmail = emailRegExp.test(inputEmail.value);
 
-  /*REGEX test*/
+  /**
+   * REGEX test
+   */
   if (testEmail) {
     inputEmail.parentElement.removeAttribute("data-error-visible");
     inputEmail.parentElement.removeAttribute("data-error");
@@ -100,9 +122,10 @@ const validEmail = () => {
     return false;
   }
 };
+/**
+ * Birthdate function
+ */
 
-/*Birthdate validation*/
-const birthdate = document.getElementById("birthdate");
 let validBirthdate = () => {
   let birthdateRegex = new RegExp(
     "([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})"
@@ -123,14 +146,15 @@ let validBirthdate = () => {
   }
 };
 
-/*Quantity validation*/
-const quantity = document.getElementById("quantity");
+/**
+ * Quantity function
+ */
+
 const validQuantity = () => {
   let quantityRegExp = new RegExp("^[0-9]$", "g");
 
   let testQuantity = quantityRegExp.test(quantity.value);
 
-  /*REGEX test*/
   if (testQuantity) {
     quantity.parentElement.removeAttribute("data-error");
     quantity.parentElement.removeAttribute("data-error-visible");
@@ -145,7 +169,9 @@ const validQuantity = () => {
   }
 };
 
-/*Location validation*/
+/**
+ * Location function
+ */
 
 validLocation = () => {
   const radiobtn = document.querySelectorAll(
@@ -167,8 +193,10 @@ validLocation = () => {
   }
 };
 
-/*Checkbox function*/
-const checkbox = document.getElementById("checkbox1");
+/**
+ * Checkbox function
+ */
+
 validCheckbox = () => {
   if (checkbox.checked) {
     checkbox.parentElement.removeAttribute("data-error");
@@ -184,7 +212,9 @@ validCheckbox = () => {
   }
 };
 
-/* Form validation */
+/**
+ * Form global validation
+ */
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -210,12 +240,3 @@ form.addEventListener("submit", (e) => {
     form.reset();
   }
 });
-
-// /**
-//  *
-//  * @param {string} param1
-//  * @param {number} param2
-//  */
-// function test(param1, param2) {
-//   param2.
-// }
