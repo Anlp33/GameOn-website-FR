@@ -522,8 +522,9 @@ footer {
 @media screen and (max-width: 475px) {
   .hero-section {
     display: block;
-    font-size: 54px;
+    box-shadow: none;
   }
+  
   .hero-content {
     background: #fff;
     color: #000;
@@ -537,7 +538,7 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 50px;
     white-space: normal;
   }
   .hero-text {
